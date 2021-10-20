@@ -1,0 +1,50 @@
+{% extends 'main/base.html' %}
+{% block title %}
+
+{% endblock %}
+
+{% block content %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<div class="panel panel-primary filterable">
+<table class="table">
+    <tbody id="myTable" align="center">
+    {% for picture in all_pictures %}
+        <tr>
+            <td colspan="3">{{picture.date|default:"-"}}. {{picture.name|default:"-"}}</td>
+        </tr>
+        <tr>
+        <td><div align="center">
+    {% if all_pictures.has_other_pages %}
+
+<ul class="pagination" style="list-style-type: none;">
+
+{% if all_pictures.has_next %}
+    <li class="page-item" style="list-style-type: none;"><a class="page-link" href="?page={{ all_pictures.next_page_number }}"><i class="fa fa-chevron-right" aria-hidden="true"></i> &laquo; Previous</a></li>
+{% else %}
+    <li style="list-style-type: none;" class="disabled"><span><i class="fa fa-chevron-right" aria-hidden="true"></i></span></li>
+{% endif %}
+       </td><td><li style="list-style-type: none;" class="page-item"> <img src="{{picture.url_media}}" alt="{{picture.name}}" height="600px" ></li></td><td>
+{% if all_pictures.has_previous %}
+    <li class="page-item" style="list-style-type: none;"> <a class="page-link" href="?page={{ all_pictures.previous_page_number }}"><i class="fa fa-chevron-left" aria-hidden="true"></i>Next &raquo;</a></li>
+{% else %}
+    <li class="disabled" style="list-style-type: none;"><span><i class="fa fa-chevron-left" aria-hidden="true"></i></span></li>
+{% endif %}
+
+    </ul>
+    {% endif %}
+</div></td>
+        </tr>
+
+        <tr align="left">
+            <td colspan="3">{{picture.description|default:"-"}}</td>
+
+        </tr>
+
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+
+{% endblock %}
