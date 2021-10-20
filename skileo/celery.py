@@ -20,7 +20,7 @@ app.autodiscover_tasks()
 app.conf.beat_schedule = {
     'add-new_image': {
         'task': 'main.tasks.get_new_picture_of_a_day',
-        'schedule': 10.0
-        # 'schedule': crontab(minute=0, hour=8),
+        # 'schedule': 10.0
+        'schedule': crontab(minute=0, hour=0),
     },
 }
